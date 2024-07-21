@@ -17,18 +17,15 @@
         Route::post('/update', [\App\Http\Controllers\BookController::class, 'update'])->name('update');
         Route::post('/delete', [\App\Http\Controllers\BookController::class, 'delete'])->name('delete');
         Route::get('/{id}', [\App\Http\Controllers\BookController::class, 'show'])->name('show');
-
+    });
     Route::prefix('/auteurs')->name('auteurs')->group(function () {
-        Route::get('/', function (Request $request){
-            $auteurs = Author::all();
-            return $auteurs;
-        });
-        Route::get('/{id}', function ($id, Request $request) {
-            $auteur= Author::where('id', $id)->get();
-            return $auteur;
-        });
+        Route::get('/', [\App\Http\Controllers\AuthorController::class, 'index'])->name('index');
+        Route::post('/create', [\App\Http\Controllers\AuthorController::class, 'create'])->name('create');
+        Route::post('/update', [\App\Http\Controllers\AuthorController::class, 'update'])->name('update');
+        Route::post('/delete', [\App\Http\Controllers\AuthorController::class, 'delete'])->name('delete');
+        Route::get('/{id}', [\App\Http\Controllers\AuthorController::class, 'show'])->name('show');
     });
-    });
+
 
 
 
