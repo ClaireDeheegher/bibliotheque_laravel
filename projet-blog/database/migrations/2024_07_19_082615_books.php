@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use function Laravel\Prompts\table;
 
 return new class extends Migration
 {
@@ -14,12 +15,15 @@ return new class extends Migration
         schema::create('books', function (Blueprint $table): void {
             $table->id();
             $table->string('name');
-            $table->string('author');
-            $table->string('publisher');
+            $table->foreignId('authors_id')->constrained(
+                table:'authors', indexName:'id'
+            );
+            $table->string('publisher')->nullable();
             $table->string('isbn');
-            $table->string('pages');
-            $table->string('language');
-            $table->string('resume');
+            $table->string('pages')->nullable();
+            $table->string('language')->nullable();
+            $table->string('resume')->nullable();
+
         });
     }
 

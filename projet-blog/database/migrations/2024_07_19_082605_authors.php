@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('lastName');
             $table->string('name');
-            $table->string('books');
+            $table->date('birthdate')->nullable();
         });
     }
 
