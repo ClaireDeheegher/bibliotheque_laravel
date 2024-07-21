@@ -29,7 +29,7 @@ class BookController extends Controller
         du required sur les champs name, author et isbn pour l'exemple */
         $request->validate([
             'name'=>'required',
-            'author_id'=>'required',
+            'authors_id'=>'required',
             'publisher'=>'max:30',
             'isbn'=>'required|unique:books,isbn|max:13',
             'pages'=>'max:4',
@@ -41,7 +41,7 @@ class BookController extends Controller
         //pour réaliser la création
         $livre = new Book;
         $livre->name= $request->name;
-        $livre->author_id = $request->author_id;
+        $livre->authors_id = $request->authors_id;
         $livre->publisher = $request->publisher;
         $livre->isbn = $request->isbn;
         $livre->pages = $request->pages;
@@ -66,7 +66,7 @@ class BookController extends Controller
      sur les champs 'name' et 'isbn' qui doivent être parfaitement remplis. */
         $request->validate([
             'name'=>'bail|required',
-            'author_id'=>'required',
+            'authors_id'=>'required',
             'publisher'=>'max:30',
             'isbn'=>'bail|required|unique:books,isbn|max:13',
             'pages'=>'max:4',
@@ -78,7 +78,7 @@ class BookController extends Controller
         //pour réaliser les modifications
         $livre = Book::find($request->id);
         $livre->name= $request->name;
-        $livre->author_id = $request->author_id;
+        $livre->authors_id = $request->authors_id;
         $livre->publisher = $request->publisher;
         $livre->isbn = $request->isbn;
         $livre->pages = $request->pages;
